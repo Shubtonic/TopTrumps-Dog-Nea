@@ -1,0 +1,169 @@
+
+import random
+import sys
+
+player = []  
+computer = [] 
+list_category = ("1", "2", "3", "4")
+
+name_category = {1: "exercise", 2: "intelligence", 3: "friendliness", 4: "drool"}
+
+
+function StartMenu()
+{
+  output "Welcome to dog game!"
+  output "Play or Quit"
+  playerChoice = input("-->")
+  if(playerChoice == "play")
+  {
+     call initialise
+  }
+  else
+  {
+    sys.exit()
+  }
+  
+}
+
+function initialise()
+{
+  output "How many cards do you want"
+  ranger = input(Number of cards wanted in the deck) 
+  if(ranger < 38 and ranger > 4 and ranger % 2==0)
+  {
+    deck = read.splitlines in dogData 
+    for(x in range(ranger/2))
+    {
+      execise = random.randint(1,5) 
+      intelligence = random.randint(1, 100) 
+      friendliness = random.randint(1,10) 
+      drool = random.randint(1,10) 
+      player.append([random.choice(deck), exercise, intelligence, friendliness, drool]) 
+    }
+    for(x in range(range/2))
+    {
+      execise = random.randint(1,5) 
+      intelligence = random.randint(1, 100) 
+      friendliness = random.randint(1,10) 
+      drool = random.randint(1,10) 
+      computer.append([random.choice(deck), exercise, intelligence, friendliness, drool]) 
+    }
+  }
+  else
+  {
+    output "Deck number must be between 4 and 38 and must be even"
+    call initialise(1, 1, ranger)
+  }
+}
+
+
+function play1(turn, computerOrPlay ,ranger)
+{
+  output len(player), "Player"
+  output len(computer), "Computer"
+  output "Your Cards:", player
+  if(len(player) and len(player) > 0)
+  {
+    output "Turn", turn
+    if(computerOrPlayer == 1)
+    {
+      output "Player Goes First!"
+      output "Category"
+      output "1) exercise"
+      output "2) intelligence"
+      output "3) friendliness"
+      output "4) drool"
+      category = input("-->")
+      if (category == "1" or "2" or "3" or "4")
+      {
+        call play2(category,turn,compOrPlaye, ranger)
+      } 
+    }
+    else
+    {
+      output "The computer goes first"
+      category = random.choice(list_category)
+      call play2(category,turn,compOrPlaye, ranger)
+    }
+  }
+  else
+  {
+    output "The game is over!"
+    if(len(player) > len(computer))
+    {
+      output "Player Won!"
+    }
+    elif(len(player) < len(computer))
+    {
+      output "Computer Wins"
+    }
+  }
+}
+
+function play2(category, turn, computerOrPlay, ranger)
+{
+  player_category = player[0]
+  computer_category = computer[0]
+  int_to_category = int(category)
+  output "The Category",name_category[int_to_category], "was chosen"
+  output "Player Stats: ",player_category[0],player_category[int_to_category] , "vs Computer Stats:", computer_category[0], computer_category[int_cate]
+  if(int_category == 4)
+  {
+    if(player_category[int_to_category] > computer_category[int_to_category])
+    {
+      output "\nThe computer won the round! The computer had the lower score"
+      call deck_sort(1, turn,compOrPlaye,ranger,player_category,computer_category)
+    }
+    elif(player_category[int_to_catgory] == computer_category[int_to_category])
+    {
+      output "Both values are the same. The player wins"
+      call deck_sort1(0, turn, compOrPlaye,ranger,player_category,computer_category)
+    }
+    else
+    {
+      output "The player's value was less than the computer's. The player wins the round"
+      call deck_sort1(0, turn, compOrPlaye,ranger,player_category,computer_category)
+    }
+  }
+  else
+  {
+    if(player_category[int_to_category] > computer_categoryt[int_category])
+    {
+      output "\nWELL WELL WELL WELL WELL"
+      output "Seems like the player won this round"
+      output "You gain a card!"
+      call deck_sort1(0, turn, compOrPlaye,ranger,player_category,computer_category)
+    }
+    elif(player_category[int_to_category] == computer_category[int_to_category])
+    {
+      output "Even stevens!?"
+      output "That won't do!\nPlayer wins"
+      call deck_sort1(0, turn, compOrPlaye,ranger,player_category,computer_category)
+    }
+    else
+    {
+      output "\nComputers are the new overlords "
+      output "The computer has won this round!"
+      call deck_sort1(1, turn, compOrPlaye,ranger,player_category,computer_category)
+    }
+  }
+}
+
+function deck_sort(value, turn, compOrPlaye, ranger, player_category, computer_category)
+{
+  if(value == 0)
+  {
+    player.append(player_category)
+    player.append(computer_category)
+  }
+  elif(value == 1)
+  {
+    computer.append(player_category)
+    computer.append(computer_category)
+  }
+  computer.pop(0)
+  player.pop(0)
+  call play1(turn + 1, compOrPlaye, ranger)
+}
+
+call StartMenu()
